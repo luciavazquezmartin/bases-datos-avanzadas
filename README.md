@@ -22,7 +22,7 @@ Implementación de capas de abstracción de datos para el desarrollo de software
 
 | Laboratorio | Carpeta | Descripción técnica y resultados | Stack |
 | :--- | :--- | :--- | :--- |
-| **Lab 04** | [`lab-04-persistencia-jpa`](./lab-04-jpa-persistence) | Mapeo objeto-relacional (ORM) de arquitecturas complejas de software mediante ingeniería directa e inversa.<br>🔹 **Comparativa:** Análisis de rendimiento y traza de ejecución de consultas abstractas (JPQL) frente a la eficiencia de consultas optimizadas en SQL Nativo. | Java, Maven, Hibernate / JPA |
+| **Lab 04** | [`lab-04-persistencia-jpa`](./lab-04-persistencia-jpa) | Mapeo objeto-relacional (ORM) de arquitecturas complejas de software mediante ingeniería directa e inversa.<br>🔹 **Comparativa:** Análisis de rendimiento y traza de ejecución de consultas abstractas (JPQL) frente a la eficiencia de consultas optimizadas en SQL Nativo. | Java, Maven, Hibernate / JPA |
 | **Lab 05** | [`lab-05-nosql-cassandra-spark`](./lab-05-nosql-cassandra-spark) | Arquitectura de almacenamiento no relacional distribuido y explotación masiva de datos en paralelo.<br>🔹 **Optimización:** Modelado NoSQL orientado a consultas mediante el diseño de claves de partición y ordenación (*Clustering Keys*), procesadas con Spark. | Apache Cassandra, Apache Spark, CQL, Docker |
 
 ---

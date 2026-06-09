@@ -1,0 +1,12 @@
+INSERT INTO Oficina (Codigo, Telefono, Direccion) VALUES (1, 976111222, 'Paseo Independencia, Zaragoza');
+INSERT INTO Oficina (Codigo, Telefono, Direccion) VALUES (2, 911222333, 'Gran Vía, Madrid');
+INSERT INTO Cliente (Dni, Nombre, Apellidos, Email, Edad, Direccion, Telefono) VALUES ('12345678A', 'Ana', 'Garcia', 'ana@email.com', 25, 'Calle Mayor 1', 600111222);
+INSERT INTO Cliente (Dni, Nombre, Apellidos, Email, Edad, Direccion, Telefono) VALUES ('87654321B', 'Luis', 'Perez Lopez', 'luis@email.com', 40, 'Calle Menor 2', 600333444);
+INSERT INTO Cuenta (Iban, Numero, Es_ahorro, Tipo_interes, Oficina_codigo, Saldo_actual) VALUES ('ES9100001111222233334444', 1111222233334444, 0, NULL, 1, 0);
+INSERT INTO Cuenta (Iban, Numero, Es_ahorro, Tipo_interes, Oficina_codigo, Saldo_actual) VALUES ('ES9100005555666677778888', 5555666677778888, 1, 2.5, NULL, 0);
+INSERT INTO ser_titular (Cliente_dni, Cuenta_iban) VALUES ('12345678A', 'ES9100001111222233334444');
+INSERT INTO ser_titular (Cliente_dni, Cuenta_iban) VALUES ('87654321B', 'ES9100005555666677778888');
+INSERT INTO Operacion (Codigo, Concepto, Fecha, Cantidad, Tipo_operacion, Cuenta_origen, Oficina_codigo, Cuenta_destino) VALUES (seq_operacion.NEXTVAL, 'Nomina', SYSDATE, 1000, 'Ingreso', 'ES9100001111222233334444', 1, NULL);
+INSERT INTO Operacion (Codigo, Concepto, Fecha, Cantidad, Tipo_operacion, Cuenta_origen, Oficina_codigo, Cuenta_destino) VALUES (seq_operacion.NEXTVAL, 'Cajero', SYSDATE, 200, 'Retirada', 'ES9100001111222233334444', 1, NULL);
+INSERT INTO Operacion (Codigo, Concepto, Fecha, Cantidad, Tipo_operacion, Cuenta_origen, Oficina_codigo, Cuenta_destino) VALUES (seq_operacion.NEXTVAL, 'Regalo', SYSDATE, 300, 'Transferencia', 'ES9100001111222233334444', NULL, 'ES9100005555666677778888');
+COMMIT;

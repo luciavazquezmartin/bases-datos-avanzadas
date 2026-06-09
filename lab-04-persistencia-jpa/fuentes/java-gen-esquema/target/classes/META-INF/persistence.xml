@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd" 
+             version="3.0">
+
+    <persistence-unit name="BanquitoPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <class>es.unizar.bd2.Cliente</class>
+        <class>es.unizar.bd2.Oficina</class>
+        <class>es.unizar.bd2.Cuenta</class>
+        <class>es.unizar.bd2.CuentaAhorro</class>
+        <class>es.unizar.bd2.CuentaCorriente</class>
+        <class>es.unizar.bd2.Operacion</class>
+        <class>es.unizar.bd2.OperacionTransferencia</class>
+        <class>es.unizar.bd2.OperacionEfectivo</class>
+
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+
+            <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@danae04.unizar.es:1521/barret"/>
+            
+            <property name="jakarta.persistence.jdbc.user" value="a871886"/>
+            <property name="jakarta.persistence.jdbc.password" value="1uci4VM(Uz)"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

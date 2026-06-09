@@ -1,0 +1,22 @@
+drop table Cliente cascade constraints
+drop table Cuenta cascade constraints
+drop table Oficina cascade constraints
+drop table Operacion cascade constraints
+drop table ser_titular cascade constraints
+
+create table Cliente (edad number(10,0), telefono number(10,0), apellidos varchar2(255 char), direccion varchar2(255 char), dni varchar2(255 char) not null, email varchar2(255 char), nombre varchar2(255 char), primary key (dni))
+
+create table Cuenta (Es_ahorro number(10,0) not null, Saldo_actual float(53), Tipo_interes float(53), numero number(10,0), refOficina number(10,0), Fecha_creacion timestamp(6), iban varchar2(255 char) not null, primary key (iban))
+
+create table Oficina (codigo number(10,0) not null, telefono number(10,0), direccion varchar2(255 char), primary key (codigo))
+
+create table Operacion (cantidad float(53), codigo number(10,0) not null, refOficina number(10,0), fecha timestamp(6), Tipo_operacion varchar2(31 char) not null, concepto varchar2(255 char), refCuentaDestino varchar2(255 char), refCuentaOrigen varchar2(255 char) not null, primary key (codigo, refCuentaOrigen))
+
+create table ser_titular (refCliente varchar2(255 char) not null, refCuenta varchar2(255 char) not null, primary key (refCliente, refCuenta))
+
+alter table Cuenta add constraint FKc5c566hxwv6ue2ufx5duwslp foreign key (refOficina) references Oficina
+alter table Operacion add constraint FK2ca48g4k2e8x0kbtsal8hwph2 foreign key (refCuentaOrigen) references Cuenta
+alter table Operacion add constraint FKodc3s0hmd9k2txskl3w6n0q5j foreign key (refOficina) references Oficina
+alter table Operacion add constraint FKetyykdchcwsj97uk5mv503o7w foreign key (refCuentaDestino) references Cuenta
+alter table ser_titular add constraint FKble52c3cs2ivqgt44773jhxnw foreign key (refCuenta) references Cuenta
+alter table ser_titular add constraint FKa8cm0vgvkkhxpq5rtb5okpyvf foreign key (refCliente) references Cliente

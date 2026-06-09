@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  bd2_network:
+    driver: bridge
+
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra-db
+    networks:
+      - bd2_network
+    ports:
+      - "9042:9042"  # Puerto estándar de Cassandra (CQL)
+    environment:
+      - CASSANDRA_CLUSTER_NAME=Practica1_Cluster
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+
+volumes:
+  cassandra_data:

@@ -1,0 +1,9 @@
+services:
+  hbase:
+    image: dajobe/hbase
+    container_name: hbase-db
+    restart: unless-stopped
+    ports:
+      - "16010:16010"   # Web UI del Master
+    volumes:
+      - ./data:/opt/hbase-data

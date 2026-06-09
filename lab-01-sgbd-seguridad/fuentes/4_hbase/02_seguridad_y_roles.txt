@@ -1,0 +1,22 @@
+================================================================================
+NOTA TÉCNICA SOBRE LA SEGURIDAD EN APACHE HBASE (MODO STANDALONE)
+================================================================================
+
+Tal y como se detalla y justifica en la Memoria de la Práctica, en un entorno
+HBase desplegado en modo 'standalone' mediante Docker (sin integración con 
+Hadoop, HDFS distribuido, ni servidor Kerberos/KDC), no es posible habilitar 
+de forma efectiva el subsistema de autorización (ACLs) ni el control de roles.
+
+Aunque se modifique el fichero 'hbase-site.xml' para incluir las propiedades:
+  - hbase.security.authentication = simple
+  - hbase.security.authorization = true
+  - hbase.coprocessor.master.classes = AccessController
+
+El sistema no dispone de la infraestructura subyacente de autenticación segura 
+(como ZooKeeper con SASL o tickets de Kerberos) requerida por el AccessController
+de HBase para gestionar usuarios y permisos (comandos GRANT/REVOKE).
+
+Por tanto, este SGBD opera bajo un modelo de confianza total en la red local del 
+contenedor, no siendo viable la creación de los roles 'consultor' y 'editor' 
+requeridos en la práctica mediante la HBase Shell nativa.
+================================================================================

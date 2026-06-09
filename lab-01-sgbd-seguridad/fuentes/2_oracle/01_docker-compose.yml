@@ -1,0 +1,20 @@
+version: '3.8'
+networks:
+  bd2_network:
+    driver: bridge
+services:
+  oracle:
+    image: container-registry.oracle.com/database/express:latest
+    container_name: oracle-xe
+    networks:
+      - bd2_network
+    environment:
+      - ORACLE_PWD=oracle123
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+
+volumes:
+  oracle_data:

@@ -1,0 +1,17 @@
+services:
+  db2:
+    image: ibmcom/db2
+    container_name: contenedor_db2
+    restart: always
+    privileged: true
+    ports:
+      - "50000:50000"
+    environment:
+      LICENSE: accept
+      DB2INST1_PASSWORD: db2inst1
+      DBNAME: db2inst1
+      PERSISTENT_HOME: "false"
+      ARCHIVE_LOGS: "false"
+      TEXT_SEARCH: "false"
+    volumes:
+      - ./data:/database

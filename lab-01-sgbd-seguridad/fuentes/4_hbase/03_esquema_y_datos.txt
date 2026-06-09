@@ -1,0 +1,43 @@
+# ================================================================================
+# SCRIPT DE INICIALIZACIÓN Y CARGA DE DATOS PARA APACHE HBASE SHELL
+# Instrucciones: Pegar estos comandos directamente en la consola interactiva 
+# a la que se accede mediante: docker exec -it hbase-db hbase shell
+# ================================================================================
+
+# 0. Limpieza previa (Simulación de DROP IF EXISTS)
+# En HBase es obligatorio deshabilitar una tabla antes de poder borrarla.
+disable 'espacioHBase:pruebas_final'
+drop 'espacioHBase:pruebas_final'
+disable 'historial_prestamos'
+drop 'historial_prestamos'
+drop_namespace 'espacioHBase'
+
+# 1. Creación del Namespace y Tablas
+create_namespace 'espacioHBase'
+
+# Tabla para pruebas genéricas (Familia de columnas: 'info')
+create 'espacioHBase:pruebas_final', 'info'
+
+# Tabla para el modelo desnormalizado de la biblioteca (Familia de columnas: 'info')
+create 'historial_prestamos', 'info'
+
+
+# 2. Inserción de datos (Comandos PUT)
+# 2.1 Datos de prueba genéricos
+put 'espacioHBase:pruebas_final', '1', 'info:dato', 'Dato visible 1'
+put 'espacioHBase:pruebas_final', '2', 'info:dato', 'Dato visible 2'
+
+# 2.2 Datos del modelo de biblioteca (RowKey = DNI-FECHA)
+put 'historial_prestamos', '12345678A-20260220', 'info:nombre_lector', 'Laura Gómez'
+put 'historial_prestamos', '12345678A-20260220', 'info:titulo_libro', 'Cien años de soledad'
+
+put 'historial_prestamos', '12345678A-20260225', 'info:nombre_lector', 'Laura Gómez'
+put 'historial_prestamos', '12345678A-20260225', 'info:titulo_libro', 'El Quijote'
+
+
+# 3. Consultas de verificación
+# 3.1 Recuperar un dato concreto por su RowKey exacta
+get 'espacioHBase:pruebas_final', '1'
+
+# 3.2 Escanear todo el historial de préstamos de un usuario específico usando ROWPREFIXFILTER
+scan 'historial_prestamos', {ROWPREFIXFILTER => '12345678A'}
